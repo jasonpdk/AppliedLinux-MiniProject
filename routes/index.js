@@ -38,8 +38,6 @@ router.post('/exec/*', function(req, res, next) {
     } else if (obj.Script == 'ls') { // ls
       command += obj.Script + " " + req.body.dir;
       console.log(command);
-    } else if (obj.Name == 'Other Command') {
-      command += req.body.command;
     } else {
       command = obj.Script;
     }
@@ -69,6 +67,27 @@ router.post('/delete/*', function(req, res, next) {
      console.log(theScriptOutput);
      res.redirect('/');
    });
+});
+
+router.post('/man/*', function(req, res, next) {
+  console.log(req.body);
+  console.log(" !!!!! " + req.url.substring(5, req.url.length));
+  theScript.findOne({'ID': req.url.substring(5, req.url.length)}, function(err, obj) {
+    console.log(obj);
+    var command = "man -P cat " + obj.Script;
+
+    // execute the script
+    var yourscript = exec(command, (error, stdout, stderr) => {
+      console.log(`${stdout}`);
+		  theScriptOutput = `${stdout}`;
+  		theScriptOutput += `${stderr}`;
+    	console.log(`${stderr}`);
+     	if (error !== null) {
+        console.log(`exec error: ${error}`);
+      }
+      res.redirect('/');
+  	});
+  });
 });
 
 router.get('/manpages', function(req, res, next) {

@@ -1,10 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
-      <meta charset="UTF-8">
-      <title>{{ title }}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css">
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!--<script src="/javascripts/scripts.js"></script>-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
+
   <body>
     <h1>LINUX Mini Project</h1>
     <h2>Jason Keane, Shane Higgins, Tomasz Klebek, Zdenek Krousky</h2>
@@ -13,5 +20,192 @@
       <li><a href="/">Scripts</a></li>
       <li><a class="active" href="/manpages">Man Pages</a></li>
     </ul>
+
+    <!-- COLLAPSIBLE -->
+    <div class="container">
+      <div id="accordion" class="panel-group">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. tf (Touch Files)</a>
+            </h4>
+          </div>
+
+          <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+
+              <a href="#NAME">NAME</a><br>
+              <a href="#SYNOPSIS">SYNOPSIS</a><br>
+              <a href="#DESCRIPTION">DESCRIPTION</a><br>
+              <a href="#OPTIONS">OPTIONS</a><br>
+              <a href="#SEE ALSO">SEE ALSO</a><br>
+              <a href="#BUGS">BUGS</a><br>
+              <a href="#AUTHOR">AUTHOR</a><br>
+
+              <hr>
+
+              <h2>NAME
+              <a name="NAME"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">tf &minus; create empty dummy files</p>
+
+              <h2>SYNOPSIS
+              <a name="SYNOPSIS"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>tf</b> [NUMBER_OF_FILES] [LOCATION]</p>
+
+              <h2>DESCRIPTION
+              <a name="DESCRIPTION"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>tf</b> is a shell program to create a number of empty dummy files. The user can specify number of files to be created and their location. If no location is specified, the files are created in current working directory. The user is prompted to input
+                the <b>filename</b> and the <b>extension</b> of the file after invoking the program and is informed afterwards where the files have been created.</p>
+
+              <h2>OPTIONS
+              <a name="OPTIONS"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">The tf&rsquo;s options are the number of files to be created and their location.
+              </p>
+
+              <h2>SEE ALSO
+              <a name="SEE ALSO"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">touch(1)</p>
+
+              <h2>BUGS
+              <a name="BUGS"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">No known bugs.
+              </p>
+
+              <h2>AUTHOR
+              <a name="AUTHOR"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">Zdenek Krousky (zkrousky@gmail.com)
+              </p>
+              <hr>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. notes</a>
+            </h4>
+          </div>
+
+          <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+              <a href="#NAME">NAME</a><br>
+              <a href="#SYNOPSIS">SYNOPSIS</a><br>
+              <a href="#DESCRIPTION">DESCRIPTION</a><br>
+              <a href="#OPTIONS">OPTIONS</a><br>
+              <a href="#SEE ALSO">SEE ALSO</a><br>
+              <a href="#BUGS">BUGS</a><br>
+              <a href="#AUTHOR">AUTHOR</a><br>
+
+              <hr>
+
+              <h2>NAME
+              <a name="NAME"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">notes &minus;
+              command line notes script</p>
+
+              <h2>SYNOPSIS
+              <a name="SYNOPSIS"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>notes</b>
+              [FILE_NAME or -d for DATE_NAME] [LOCATION]</p>
+
+              <h2>DESCRIPTION
+              <a name="DESCRIPTION"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>notes</b> is
+              a bash script that allows the user to create quick to-do
+              notes inside the terminal. The script checks, if a notes
+              file is present in the given or current folder. If so it
+              simply appends new text to the existing content otherwise it
+              creates a new file. The name can be specified as the first
+              argument after the invocation of the command, otherwise, the
+              scripts creates a file with the current date name. Every
+              time <b>notes</b> is invoked for a specific file a new entry
+              is created marked by current time. <b>-d</b> option has to
+              be used if creating files with date name in locations other
+              than the current directory.</p>
+
+              <h2>OPTIONS
+              <a name="OPTIONS"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">Options for
+              <b>notes</b> are the name of the file or the -d switch and
+              the location of the file. If both are empty, file with date
+              name in current directory is created and new text added to
+              it&rsquo;s content</p>
+
+              <table width="100%" border="0" rules="none" frame="void" cellspacing="0" cellpadding="0">
+              <tr valign="top" align="left">
+              <td width="11%"></td>
+              <td width="-3%"></td>
+              <td width="7%">
+
+              <p><b>-d</b></p></td>
+              <td width="85%">
+
+              <p>create a file with DATE as it&rsquo;s name in other than
+              the current directory</p></td></tr>
+              </table>
+
+              <h2>SEE ALSO
+              <a name="SEE ALSO"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">cat(1)</p>
+
+              <h2>BUGS
+              <a name="BUGS"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">No known
+              bugs.</p>
+
+              <h2>AUTHOR
+              <a name="AUTHOR"></a>
+              </h2>
+
+              <p style="margin-left:11%; margin-top: 1em">Zdenek Krousky
+              (zkrousky@gmail.com)</p>
+              <hr>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. What is CSS?</a>
+            </h4>
+          </div>
+
+          <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+            </div>
+          </div>
+        </div>-->
+      </div>
+    </div>
   </body>
 </html>
