@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>{{ title }}</title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <h1>LINUX Mini Project</h1>
+    <h2>Jason Keane, Shane Higgins, Tomasz Klebek, Zdenek Krousky</h2>
+    <!-- NAVBAR (Put in partials)-->
+    <ul>
+      <li><a class="active" href="/">Scripts</a></li>
+      <li><a href="/manpages">Man Pages</a></li>
+    </ul>
+
+    <section class="get">
+        <h3>Scripts</h3>
+        <div>
+            {{# each items }}
+                <article class="item">
+                    <div>
+                      <b>Name:</b> {{ this.Name }}
+                      <div>The script: {{ this.Script }}</div>
+                      <form action="/exec/{{ this.ID }}" method="post">
+                        {{{ this.OptionsHTML }}}
+                        <button type="submit">Run this script</button>
+                        <button type="" formaction="/delete/{{ this.ID }}">Delete</button>
+                      </form>
+                    </div>
+                </article>
+            {{/each}}
+        </div>
+    </section>
+    <section class="get">
+      <h3>Script Output</h3>
+      <div class="outputDiv">
+        {{ scriptOutput }}
+      </div>
+    </section>
+</body>
+</html>

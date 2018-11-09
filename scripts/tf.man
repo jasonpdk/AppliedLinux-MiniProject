@@ -1,0 +1,25 @@
+.\" Manpage for tf.
+.\" Contact zkrousky@gmail.com to correct errors or typos.
+.TH man 1 "02 Nov 2018" "1.0" "manpage for tf"
+.SH NAME
+tf \- create empty dummy files
+.SH SYNOPSIS
+.B "tf"
+[NUMBER_OF_FILES] [LOCATION]
+.SH DESCRIPTION
+.B "tf"
+is a shell program to create a number of empty dummy files. The user can specify number of files to be created and
+their location. If no location is specified, the files are created in current working directory. The user is prompted
+to input the 
+.B "filename" 
+and the 
+.B "extension"
+of the file after invoking the program and is informed afterwards where the files have been created.
+.SH OPTIONS
+The tf's options are the number of files to be created and their location. 
+.SH SEE ALSO
+touch(1)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Zdenek Krousky (zkrousky@gmail.com)

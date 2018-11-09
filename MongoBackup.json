@@ -1,0 +1,7 @@
+{
+    "_id" : ObjectId("5be44ad414eb98e41edb0f86"),
+    "ID" : "1",
+    "Name" : "TF (Touch Files)",
+    "Script" : "tf",
+    "OptionsHTML" : "<label>Number of Files:</label><input type=\"number\" id=\"numFiles\" name=\"numFiles\" min=\"1\" placeholder=\"Number of Files\" /><br /><label>Location:</label><input type=\"text\" id=\"location\" name=\"location\" placeholder=\"Location\" /><br /><label>File Name:</label><input type=\"text\" id=\"name\" name=\"name\" placeholder=\"File Name\" /><br /><label>Extension:</label><input type=\"text\" id=\"extension\" name=\"extension\" placeholder=\"Extension\" />"
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>{{ title }}</title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <h1>LINUX mini project</h1>
+    <section class="get">
+        <h3>Scripts</h3>
+        <div>
+            {{# each items }}
+                <article class="item">
+                    <div><b>Name:</b> {{ this.Name }}</div>
+                    <div>The script: {{ this.Script }}</div>
+                </article>
+            {{/each}}
+        </div>
+    </section>
+</body>
+</html>
