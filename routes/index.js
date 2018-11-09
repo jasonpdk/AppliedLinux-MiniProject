@@ -1,6 +1,5 @@
 var express = require('express');
 const exec = require('child_process').exec;
-var os = require('os');
 var router = express.Router();
 var mongoose = require('mongoose');
 mongoose.connect('localhost:27017/scriptDb');
