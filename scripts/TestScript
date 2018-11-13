@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+VAR=($1 $2 $3);
+
+for item in ${VAR[*]};
+do
+  printf "   %s\n" $item
+done
