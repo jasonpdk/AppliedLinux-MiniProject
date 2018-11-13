@@ -42,3 +42,9 @@
     "Name" : "ls",
     "Script" : "ls"
 }
+{
+    "_id" : ObjectId("5beace2a855593adf38f6f4a"),
+    "ID" : 7,
+    "Name" : "Flip A Coin",
+    "Script" : "TestScript"
+}
