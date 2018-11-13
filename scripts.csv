@@ -1,0 +1,24 @@
+ID,Name,Script,OptionsHTML
+1,TF (Touch Files),tf,"<label>Number of Files:</label><input type=\""number\"" id=\""numFiles\"" name=\""numFiles\"" min=\""1\"" placeholder=\""Number of Files\"" /><br /><label>Location:</label><input type=\""text\"" id=\""location\"" name=\""location\"" placeholder=\""Location\"" /><br /><label>File Name:</label><input type=\""text\"" id=\""name\"" name=\""name\"" placeholder=\""File Name\"" /><br /><label>Extension:</label><input type=\""text\"" id=\""extension\"" name=\""extension\"" placeholder=\""Extension\"" />"
+2,Notes,notes,"<label>File Name:</label><input type=\""text\"" id=\""name\"" name=\""name\"" placeholder=\""File Name\"" /><br /><label>Location:</label><input type=\""text\"" id=\""location\"" name=\""location\"" placeholder=\""Location\"" /><br /><label>Note:</label><textarea name=\""text\"" id=\""note\"" cols=\""40\"" rows=\""5\""></textarea>"
+3,LS,ls,"<label>Directory:</label><input type=\""text\"" id=\""dir\"" name=\""dir\"" placeholder=\""Directory\"" />"
+4,PWD,pwd,
+5,cowsay hello,cowsay hello,
+6,ls,ls,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,, 

@@ -30,8 +30,15 @@
 }
 
 {
-    "_id" : ObjectId("5be4a7c365b42f24c15451ef"),
+    "_id" : ObjectId("5be5ef9cb55cd9bd922d6e30"),
     "ID" : 5,
-    "Name" : "Other Command",
-    "OptionsHTML" : "<label>Command:</label><input type=\"text\" id=\"command\" name=\"command\" placeholder=\"Command\" />"
+    "Name" : "cowsay hello",
+    "Script" : "cowsay hello"
+}
+
+{
+    "_id" : ObjectId("5be9556863c1f0c97bd52d45"),
+    "ID" : 6,
+    "Name" : "ls",
+    "Script" : "ls"
 }
