@@ -1,4 +1,6 @@
 #!/bin/bash
+# Created by Tom Klebek
+# Flips a coin
 
 echo "Flipping a coin..."
 
