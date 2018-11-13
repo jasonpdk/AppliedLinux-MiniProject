@@ -33,7 +33,7 @@
                         {{{ this.OptionsHTML }}}
                         <br /><br />
                         <button type="submit">Run this script</button>
-                        <button type="" formaction="/delete/{{ this.ID }}">Delete</button>
+                        <button type="" onclick="return confirm('Are you sure?');" formaction="/delete/{{ this.ID }}">Delete</button>
                         <button type="" formaction="/man/{{ this.ID }}">Man Page</button>
                       </form>
                     </div>

@@ -64,13 +64,14 @@ router.post('/exec/*', function(req, res, next) {
 
 // delete a script
 router.post('/delete/*', function(req, res, next) {
+  console.log(req.body);
    theScript.findOneAndRemove({'ID':req.url.substring(8, req.url.length)}, function(err, obj) {
      theScriptOutput = "ID: " + obj.ID + " has been deleted";
      console.log(theScriptOutput);
      res.redirect('/');
    });
 });
- 
+
 // get man page from /
 router.post('/man/*', function(req, res, next) {
   theScript.findOne({'ID': req.url.substring(5, req.url.length)}, function(err, obj) {
