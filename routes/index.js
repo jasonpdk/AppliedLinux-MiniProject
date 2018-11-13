@@ -17,16 +17,24 @@ var theScript = mongoose.model('script', scriptSchema);
 var theScriptOutput = "";
 
 router.get('/', function(req, res, next) {
-  theScript.find().sort({ID: 1}) // order by ID
+  theScript.find().sort({
+      ID: 1
+    }) // order by ID
     .then(function(doc) {
       console.log("Array length is: " + doc.length);
-      res.render('index', {title: "Scripts", items: doc, scriptOutput: theScriptOutput});
+      res.render('index', {
+        title: "Scripts",
+        items: doc,
+        scriptOutput: theScriptOutput
+      });
     });
 });
 
 // run a script
 router.post('/exec/*', function(req, res, next) {
-  theScript.findOne({'ID': req.url.substring(6, req.url.length)}, function(err, obj) {
+  theScript.findOne({
+    'ID': req.url.substring(6, req.url.length)
+  }, function(err, obj) {
     var command = "";
 
     // adjust the command for each script
@@ -38,6 +46,14 @@ router.post('/exec/*', function(req, res, next) {
     } else if (obj.Script == 'ls') { // ls
       command += obj.Script + " " + req.body.dir;
       console.log(command);
+    } else if (obj.Script == 'cowsay') {
+      console.log(req.body);
+      if (req.body.cow == "") {
+        command += "fortune | " + obj.Script;
+      } else {
+        command += obj.Script + " " + req.body.cow;
+        console.log(command);
+      }
     } else {
       command = obj.Script;
     }
@@ -45,10 +61,10 @@ router.post('/exec/*', function(req, res, next) {
     // execute the script
     exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
-		  theScriptOutput = `${stdout}`;
-  		theScriptOutput += `${stderr}`;
-    	console.log(`${stderr}`);
-     	if (error !== null) {
+      theScriptOutput = `${stdout}`;
+      theScriptOutput += `${stderr}`;
+      console.log(`${stderr}`);
+      if (error !== null) {
         console.log(`exec error: ${error}`);
       }
 
@@ -58,43 +74,49 @@ router.post('/exec/*', function(req, res, next) {
 
       // go back to index when execution is finished
       res.redirect('/');
-  	});
+    });
   });
 });
 
 // delete a script
 router.post('/delete/*', function(req, res, next) {
   console.log(req.body);
-   theScript.findOneAndRemove({'ID':req.url.substring(8, req.url.length)}, function(err, obj) {
-     theScriptOutput = "ID: " + obj.ID + " has been deleted";
-     console.log(theScriptOutput);
-     res.redirect('/');
-   });
+  theScript.findOneAndRemove({
+    'ID': req.url.substring(8, req.url.length)
+  }, function(err, obj) {
+    theScriptOutput = "ID: " + obj.ID + " has been deleted";
+    console.log(theScriptOutput);
+    res.redirect('/');
+  });
 });
 
 // get man page from /
 router.post('/man/*', function(req, res, next) {
-  theScript.findOne({'ID': req.url.substring(5, req.url.length)}, function(err, obj) {
+  theScript.findOne({
+    'ID': req.url.substring(5, req.url.length)
+  }, function(err, obj) {
     var command = "man -P cat " + obj.Script;
 
     // execute the script
     exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
-		  theScriptOutput = `${stdout}`;
-  		theScriptOutput += `${stderr}`;
-    	console.log(`${stderr}`);
-     	if (error !== null) {
+      theScriptOutput = `${stdout}`;
+      theScriptOutput += `${stderr}`;
+      console.log(`${stderr}`);
+      if (error !== null) {
         console.log(`exec error: ${error}`);
       }
 
       // go back to index when execution is finished
       res.redirect('/'); // redirect back to index when script finishes
-  	});
+    });
   });
 });
 
 // manpages page
 router.get('/manpages', function(req, res, next) {
-  res.render('manpages', {title: "Man Pages"});
+  res.render('manpages', {
+    title: "Man Pages"
+  });
 });
 module.exports = router;
