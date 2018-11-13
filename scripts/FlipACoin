@@ -1,0 +1,19 @@
+#!/bin/bash
+# Created by Tom Klebek
+# Flips a coin
+
+echo "Flipping a coin..."
+
+echo "The coin says..."
+BINR=$(( ( RANDOM % 2 )  + 0 ))
+if [ $BINR == 1 ]
+then
+AYS="HEADS"
+fi
+if [ $BINR == 0 ]
+then
+AYS="TAILS"
+fi
+echo "     _____ "
+echo "    /"$AYS"\\"
+echo "    \\_____/"
