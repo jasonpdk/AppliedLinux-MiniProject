@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   theScript.find().sort({ID: 1}) // order by ID
     .then(function(doc) {
       console.log("Array length is: " + doc.length);
-      res.render('index', {title: "My Page", items: doc, scriptOutput: theScriptOutput});
+      res.render('index', {title: "Scripts", items: doc, scriptOutput: theScriptOutput});
     });
 });
 
@@ -43,7 +43,7 @@ router.post('/exec/*', function(req, res, next) {
     }
 
     // execute the script
-    var yourscript = exec(command, (error, stdout, stderr) => {
+    exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
 		  theScriptOutput = `${stdout}`;
   		theScriptOutput += `${stderr}`;
@@ -56,6 +56,7 @@ router.post('/exec/*', function(req, res, next) {
       theScriptOutput = theScriptOutput.replace(/ /g, "&ensp;")
       theScriptOutput = theScriptOutput.replace(/\n/g, "<br />");
 
+      // go back to index when execution is finished
       res.redirect('/');
   	});
   });
@@ -69,13 +70,14 @@ router.post('/delete/*', function(req, res, next) {
      res.redirect('/');
    });
 });
-
+ 
+// get man page from /
 router.post('/man/*', function(req, res, next) {
   theScript.findOne({'ID': req.url.substring(5, req.url.length)}, function(err, obj) {
     var command = "man -P cat " + obj.Script;
 
     // execute the script
-    var yourscript = exec(command, (error, stdout, stderr) => {
+    exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
 		  theScriptOutput = `${stdout}`;
   		theScriptOutput += `${stderr}`;
@@ -83,12 +85,15 @@ router.post('/man/*', function(req, res, next) {
      	if (error !== null) {
         console.log(`exec error: ${error}`);
       }
+
+      // go back to index when execution is finished
       res.redirect('/'); // redirect back to index when script finishes
   	});
   });
 });
 
+// manpages page
 router.get('/manpages', function(req, res, next) {
-  res.render('manpages', {title: "My Page"});
+  res.render('manpages', {title: "Man Pages"});
 });
 module.exports = router;
