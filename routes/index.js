@@ -16,6 +16,11 @@ var theScript = mongoose.model('script', scriptSchema);
 
 var theScriptOutput = "";
 
+function fixScriptFormatForHTML() {
+  theScriptOutput = theScriptOutput.replace(/ /g, "&ensp;")
+  theScriptOutput = theScriptOutput.replace(/\n/g, "<br />");
+}
+
 router.get('/', function(req, res, next) {
   theScript.find().sort({
       ID: 1
@@ -69,8 +74,7 @@ router.post('/exec/*', function(req, res, next) {
       }
 
       // fix the formatting so spaces and line breaks appear properly in html
-      theScriptOutput = theScriptOutput.replace(/ /g, "&ensp;")
-      theScriptOutput = theScriptOutput.replace(/\n/g, "<br />");
+      fixScriptFormatForHTML();
 
       // go back to index when execution is finished
       res.redirect('/');
@@ -106,6 +110,8 @@ router.post('/man/*', function(req, res, next) {
       if (error !== null) {
         console.log(`exec error: ${error}`);
       }
+
+      fixScriptFormatForHTML();
 
       // go back to index when execution is finished
       res.redirect('/'); // redirect back to index when script finishes
