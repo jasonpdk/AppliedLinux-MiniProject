@@ -31,6 +31,11 @@ NOTE=$3
 #else
 #	LOCATION=$2
 #fi
+if [ "$NAME" == "-d" ]; then
+    NAME=`date +"%Y-%m-%d"`
+else
+    NAME=$1
+fi
 
 cd $LOCATION
 
