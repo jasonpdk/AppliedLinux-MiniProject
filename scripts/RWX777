@@ -15,51 +15,53 @@ for item in ${VAR[*]};
 do
   if  ([ "$item" == "7" ] || [ "$item" == "rwx" ]); then
     if [ "$item" == "7" ]; then
-      echo "rwx";
+      echo -n "rwx";
     elif [ "$item" = "rwx" ]; then
-      echo "7";
+      echo -n "7";
     fi
  elif ([ "$item" == "6" ] || [ "$item" == "rw-" ]); then
    if [ "$item" == "6" ]; then
-     echo "rw-";
+     echo -n "rw-";
    elif [ "$item" == "rw-" ]; then
-     echo "6";
+     echo -n "6";
    fi
  elif ([ "$item" == "5" ] || [ "$item" == "r-x" ]); then
    if [ "$item" == "5" ]; then
-     echo "r-x";
+     echo -n "r-x";
    elif [ "$item" == "r-x" ]; then
-     echo "5";
+     echo -n "5";
    fi
  elif ([ "$item" == "4" ] || [ "$item" == "r--" ]); then
    if [ "$item" == "4" ]; then
-     echo "r--";
+     echo -n "r--";
    elif [ "$item" == "r--" ]; then
-     echo "4";
+     echo -n "4";
    fi
  elif ([ "$item" == "3" ] || [ "$item" == "-wx" ]); then
    if [ "$item" == "3" ]; then
-     echo "-wx";
+     echo -n "-wx";
    elif [ "$item" == "-wx" ]; then
-     echo "3";
+     echo -n "3";
    fi
  elif ([ "$item" == "2" ] || [ "$item" == "-w-" ]); then
    if [ "$item" == "2" ]; then
-     echo "-w-";
+     echo -n "-w-";
    elif [ "$item" == "-w-" ]; then
-     echo "2";
+     echo -n "2";
    fi
  elif ([ "$item" == "1" ] || [ "$item" == "--x" ]); then
    if [ "$item" == "1" ]; then
-     echo "--x";
+     echo -n "--x";
    elif [ "$item" == "--x" ]; then
-     echo "1";
+     echo -n "1";
    fi
  elif ([ "$item" == "0" ] || [ "$item" == "---" ]); then
    if [ "$item" == "0" ]; then
-     echo "---";
+     echo -n "---";
    elif [ "$item" == "---" ]; then
-     echo "0";
+     echo -n "0";
    fi
   fi
+
 done
+echo ""
