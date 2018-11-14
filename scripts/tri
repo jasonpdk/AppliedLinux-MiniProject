@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Name: Tomasz Klebek
+# Discription: create a triangle
+# Date: 2018-11-14
+
+VAR1=$1 #4
+
+for ((i=0;i<VAR1;i++))
+do
+  for((w=0;i>w;w++))
+  do
+    printf "*"
+  done
+  printf "\n"
+done
