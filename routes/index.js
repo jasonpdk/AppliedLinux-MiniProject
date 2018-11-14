@@ -43,7 +43,7 @@ router.post('/exec/*', function(req, res, next) {
   }, function(err, obj) {
     var command = "";
 
-    console.log("OBJ! " + obj.Script);
+    console.log(req.body);
     // adjust the command for each script
     console.log("ID " + obj.id);
     if (obj.Script == 'tf') {
@@ -52,24 +52,26 @@ router.post('/exec/*', function(req, res, next) {
       command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
     } else if (obj.Script == 'ls') { // ls
       command = obj.Script + " " + req.body.dir;
+      console.log(command);
     } else if (obj.Script == 'cowsay') {
+      console.log(req.body);
       if (req.body.cow == "") {
         command = "fortune | " + obj.Script;
       } else {
         command = obj.Script + " " + req.body.cow;
+        console.log(command);
       }
     } else if (obj.Script == 'RWX777') {
       console.log("TYPE " + req.body.type);
       if (req.body.type == 'numbers') {
-        command += obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
+        command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
         console.log(command);
       } else if (req.body.type == 'letters') {
-        command += obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
     } else {
       command = obj.Script;
     }
-    console.log("COMMAND: " + command);
 
     // execute the script
     exec(command, function(error, stdout, stderr) {
