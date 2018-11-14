@@ -41,7 +41,7 @@ if [ ! -f $PWD'/'$NAME ]; then
 	touch $NAME                                 # create the file
     echo "" >> $NAME                            # insert newline to the file
     echo "NOTE CREATED: " `date +"%T"` >> $NAME # insert current time
-	echo $NOTE >> $NAME                                # insert text
+	printf "$NOTE" >> $NAME                                # insert text
 	cat $NAME                                   # printout current content
 else
 	echo "Appending to existing file in $PWD, the file contains the following text so far ..."
@@ -49,7 +49,7 @@ else
 	echo ""                                     # insert newline
     echo "" >> $NAME                            # insert newline to the file
     echo "NOTE CREATED: " `date +"%T"` >> $NAME # insert current time
-	echo $NOTE >> $NAME                                # insert text
+	printf "$NOTE" >> $NAME                               # insert text
 	cat $NAME                                   # printout current content
 fi
 
