@@ -16,7 +16,7 @@ do
   if  ([ "$item" == "7" ] || [ "$item" == "rwx" ]); then
     if [ "$item" == "7" ]; then
       echo "rwx";
-    elif [ "$item" == "rwx" ]; then
+    elif [ "$item" = "rwx" ]; then
       echo "7";
     fi
  elif ([ "$item" == "6" ] || [ "$item" == "rw-" ]); then
@@ -31,7 +31,6 @@ do
    elif [ "$item" == "r-x" ]; then
      echo "5";
    fi
-   echo "r-x";
  elif ([ "$item" == "4" ] || [ "$item" == "r--" ]); then
    if [ "$item" == "4" ]; then
      echo "r--";
@@ -44,7 +43,6 @@ do
    elif [ "$item" == "-wx" ]; then
      echo "3";
    fi
-   echo "-wx";
  elif ([ "$item" == "2" ] || [ "$item" == "-w-" ]); then
    if [ "$item" == "2" ]; then
      echo "-w-";
