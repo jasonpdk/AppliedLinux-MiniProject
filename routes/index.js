@@ -47,19 +47,16 @@ router.post('/exec/*', function(req, res, next) {
     // adjust the command for each script
     console.log("ID " + obj.id);
     if (obj.Script == 'tf') {
-      command += obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
+      command = obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
     } else if (obj.Script == 'notes') {
-      // TODO
+      command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
     } else if (obj.Script == 'ls') { // ls
-      command += obj.Script + " " + req.body.dir;
-      console.log(command);
+      command = obj.Script + " " + req.body.dir;
     } else if (obj.Script == 'cowsay') {
-      console.log(req.body);
       if (req.body.cow == "") {
-        command += "fortune | " + obj.Script;
+        command = "fortune | " + obj.Script;
       } else {
-        command += obj.Script + " " + req.body.cow;
-        console.log(command);
+        command = obj.Script + " " + req.body.cow;
       }
     } else if (obj.Script == 'RWX777') {
       console.log("TYPE " + req.body.type);
@@ -72,6 +69,7 @@ router.post('/exec/*', function(req, res, next) {
     } else {
       command = obj.Script;
     }
+    console.log("COMMAND: " + command);
 
     // execute the script
     exec(command, function(error, stdout, stderr) {

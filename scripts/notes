@@ -1,33 +1,36 @@
 #!/bin/bash
 #
-# Notes is a shell scripts that allows the user to create notes directly
+# Notes is a shell script that allows the user to create notes directly
 # in the terminal. It will automatically add the creation date to any new
 # note
 
 NAME=$1
 LOCATION=$2
+NOTE=$3
 
 # check if NAME isn't empty, if so, save current date to it
-if [ -z "$NAME" ]; then
-	NAME=`date +"%Y-%m-%d"`
+#if [ -z "$NAME" ]; then
+#	NAME=`date +"%Y-%m-%d"`
 
 # or if the "-d" is specified, save current date to it
-elif [ $NAME="-d" ]; then
-	NAME=`date +"%Y-%m-%d"`
+#elif [ $NAME="-d" ]; then
+#	NAME=`date +"%Y-%m-%d"`
 
 # otherwise use the name specified by the user
-else
-	NAME=$1
-fi
+#if [ $NAME="-d" ]; then
+#    NAME=`date +"%Y-%m-%d"`
+#else
+#	NAME=$1
+#fi
 
 # check if LOCATION has been specified, if not, current directory path is used
-if [ -z "$LOCATION" ]; then
-	LOCATION=$PWD
+#if [ -z "$LOCATION" ]; then
+#	LOCATION=$PWD
 
 # otherwise use user specified path
-else
-	LOCATION=$2
-fi
+#else
+#	LOCATION=$2
+#fi
 
 cd $LOCATION
 
@@ -38,15 +41,16 @@ if [ ! -f $PWD'/'$NAME ]; then
 	touch $NAME                                 # create the file
     echo "" >> $NAME                            # insert newline to the file
     echo "NOTE CREATED: " `date +"%T"` >> $NAME # insert current time
-	cat >> $NAME                                # insert text
+	printf "$NOTE" >> $NAME                                # insert text
+	cat $NAME                                   # printout current content
 else
 	echo "Appending to existing file in $PWD, the file contains the following text so far ..."
 	echo ""
-	cat $NAME                                   # printout current content
 	echo ""                                     # insert newline
     echo "" >> $NAME                            # insert newline to the file
     echo "NOTE CREATED: " `date +"%T"` >> $NAME # insert current time
-	cat >> $NAME                                # insert text
+	printf "$NOTE" >> $NAME                               # insert text
+	cat $NAME                                   # printout current content
 fi
 
 cd $OLDPWD
