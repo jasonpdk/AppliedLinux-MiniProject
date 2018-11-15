@@ -37,27 +37,37 @@ router.get('/', function(req, res, next) {
 
 // run a script
 router.post('/exec/*', function(req, res, next) {
+  console.log(req.body);
   theScript.findOne({
     'ID': req.url.substring(6, req.url.length)
   }, function(err, obj) {
     var command = "";
 
+    console.log(req.body);
     // adjust the command for each script
     console.log("ID " + obj.id);
     if (obj.Script == 'tf') {
-      command += obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
+      command = obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
     } else if (obj.Script == 'notes') {
-      // TODO
+      command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
     } else if (obj.Script == 'ls') { // ls
-      command += obj.Script + " " + req.body.dir;
+      command = obj.Script + " " + req.body.dir;
       console.log(command);
     } else if (obj.Script == 'cowsay') {
       console.log(req.body);
       if (req.body.cow == "") {
-        command += "fortune | " + obj.Script;
+        command = "fortune | " + obj.Script;
       } else {
-        command += obj.Script + " " + req.body.cow;
+        command = obj.Script + " " + req.body.cow;
         console.log(command);
+      }
+    } else if (obj.Script == 'RWX777') {
+      console.log("TYPE " + req.body.type);
+      if (req.body.type == 'numbers') {
+        command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
+        console.log(command);
+      } else if (req.body.type == 'letters') {
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
     } else {
       command = obj.Script;
