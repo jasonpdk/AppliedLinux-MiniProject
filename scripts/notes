@@ -41,20 +41,17 @@ cd $LOCATION
 
 # create or append new content to a file
 if [ ! -f $PWD'/'$NAME ]; then
-	echo "Creating new file in $PWD"
-	echo ""                                     # just a visual newline
+	printf "Creating new file in $PWD \n"
 	touch $NAME                                 # create the file
-    echo "" >> $NAME                            # insert newline to the file
+    printf "\n" >> $NAME                            # insert newline to the file
     echo "NOTE CREATED: " `date +"%T"` >> $NAME # insert current time
-	printf "$NOTE" >> $NAME                                # insert text
+	printf "$NOTE\n" >> $NAME                                # insert text
 	cat $NAME                                   # printout current content
 else
-	echo "Appending to existing file in $PWD, the file contains the following text so far ..."
-	echo ""
-	echo ""                                     # insert newline
-    echo "" >> $NAME                            # insert newline to the file
+	printf "Appending to existing file in $PWD\nThe file contains the following text so far ...\n"
+    printf "\n" >> $NAME                            # insert newline to the file
     echo "NOTE CREATED: " `date +"%T"` >> $NAME # insert current time
-	printf "$NOTE" >> $NAME                               # insert text
+	printf "$NOTE\n" >> $NAME                               # insert text
 	cat $NAME                                   # printout current content
 fi
 
