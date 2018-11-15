@@ -8,29 +8,6 @@ NAME=$1
 LOCATION=$2
 NOTE=$3
 
-# check if NAME isn't empty, if so, save current date to it
-#if [ -z "$NAME" ]; then
-#	NAME=`date +"%Y-%m-%d"`
-
-# or if the "-d" is specified, save current date to it
-#elif [ $NAME="-d" ]; then
-#	NAME=`date +"%Y-%m-%d"`
-
-# otherwise use the name specified by the user
-#if [ $NAME="-d" ]; then
-#    NAME=`date +"%Y-%m-%d"`
-#else
-#	NAME=$1
-#fi
-
-# check if LOCATION has been specified, if not, current directory path is used
-#if [ -z "$LOCATION" ]; then
-#	LOCATION=$PWD
-
-# otherwise use user specified path
-#else
-#	LOCATION=$2
-#fi
 if [ "$NAME" == "-d" ]; then
     NAME=`date +"%Y-%m-%d"`
 else
