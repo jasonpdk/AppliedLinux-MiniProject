@@ -5,18 +5,23 @@
 tf \- create empty dummy files
 .SH SYNOPSIS
 .B "tf"
-[NUMBER_OF_FILES] [LOCATION]
+[NUMBER_OF_FILES] [LOCATION] [FILE_NAME_PATTERN] [FILE_EXTENSION]
 .SH DESCRIPTION
 .B "tf"
 is a shell program to create a number of empty dummy files. The user can specify number of files to be created and
-their location. If no location is specified, the files are created in current working directory. The user is prompted
-to input the 
-.B "filename" 
-and the 
-.B "extension"
-of the file after invoking the program and is informed afterwards where the files have been created.
+their location.  Location must be specified even if creating the files in
+current working directory. After creating  the files a tree directory structure is displayed.
 .SH OPTIONS
-The tf's options are the number of files to be created and their location. 
+The tf's options are the number of files to be created, location or -p switch, file name pattern and extension
+
+.B "-p"
+create files in current directory
+.SH EXAMPLES
+.B "tf 3 ./test file jpg"
+--> create three files in ./test directory, output will be file1.jpg, file2.jpg, file3.jpg
+
+.B "tf 2 -p file png"
+--> create two files in current directory, output files will be file1.png, file2.png
 .SH SEE ALSO
 touch(1)
 .SH BUGS
