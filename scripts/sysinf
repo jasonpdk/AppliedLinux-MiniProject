@@ -23,15 +23,9 @@ do
             fi
             ;;
         -g|gpu|--gpu)
-            if [ -f $GPU_FILE ]; then
                 echo ""
                 echo "GPU"
-                # information about the GPU needs to be extracted here
-            else
-                echo ""
-                echo "GPU"
-                echo "Cannot retrieve requested information"
-            fi
+                lspci | grep -i "graphics" | cut -d' ' -f2-
             ;;
         -m|mem|--mem)
             if [ -f $MEM_FILE ]; then
