@@ -5,47 +5,55 @@
 CPU_FILE="/proc/cpuinfo"
 GPU_FILE="/unknownLocation"
 MEM_FILE="/proc/meminfo"
-HDD_FILE=""
+HDD_FILE="/proc/scsi/scsi"
 
 for arg in "$@"
 do
-        case $arg in
-            -c|cpu|--cpu)
-                if [ -f $CPU_FILE ]; then
-                    echo ""
-                    echo "CPU"
-                    grep -i "vendor_id" $CPU_FILE | head -n 1
-                    grep -i "model name" $CPU_FILE | head -n 1
-                    grep -i "cpu cores" $CPU_FILE | head -n 1
-                    echo "architecture    : `uname -p`"
-                else
-                    echo "Cannot retrieve requested information"
-                fi
-                ;;
-            -g|gpu|--gpu)
-                if [ -f $GPU_FILE ]; then
-                    echo ""
-                    echo "GPU"
-                else
-                    echo "Cannot retrieve requested information"
-                fi
-                ;;
-            -m|mem|--mem)
-                if [ -f $MEM_FILE ]; then
-                    echo ""
-                    echo "Memory"
-                    grep -i "MemTotal" $MEM_FILE
-                    grep -i "MemFree" $MEM_FILE
-                    grep -i "SwapTotal" $MEM_FILE
-                else
-                    echo "Cannot retrieve requested information"
-                fi
-                ;;
-            -h|hdd|--hdd)
+    case $arg in
+        -c|cpu|--cpu)
+            if [ -f $CPU_FILE ]; then
+                echo ""
+                echo "CPU"
+                grep -i "vendor_id" $CPU_FILE | head -n 1
+                grep -i "model name" $CPU_FILE | head -n 1
+                grep -i "cpu cores" $CPU_FILE | head -n 1
+                echo "architecture    : `uname -p`"
+            else
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+        -g|gpu|--gpu)
+            if [ -f $GPU_FILE ]; then
+                echo ""
+                echo "GPU"
+                # information about the GPU needs to be extracted here
+            else
+                echo ""
+                echo "GPU"
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+        -m|mem|--mem)
+            if [ -f $MEM_FILE ]; then
+                echo ""
+                echo "Memory"
+                grep -i "MemTotal" $MEM_FILE
+                grep -i "MemFree" $MEM_FILE
+                grep -i "SwapTotal" $MEM_FILE
+            else
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+        -h|hdd|--hdd)
+            if [ -f $HDD_FILE ]; then
                 echo ""
                 echo "Storage"
-                df -h | grep -i "/dev/sd"
-                ;;
-        esac
+                cat $HDD_FILE
+            #df -h | grep -i "/dev/sd"
+            else
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+    esac
 
 done
