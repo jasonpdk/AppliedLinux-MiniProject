@@ -1,34 +1,37 @@
-#!/bin/bash
+##!/bin/bash
+## Print a christmas tree of a specified height
 
-var1=$1;
-var2=$2;
-var3=$3;
+height=$1;
+maxWidth=$height*2
+middle=($maxWidth)/2
+legWidth=4
+legSpaces=$middle-$legWidth+2
 
+## Print tree
+height=$height+1
+for ((i=1;i < height; i++ ));
+do
+ for (( j = height-1; j >= i; j-- ));
+ do
+   echo -ne " ";
+ done
+ for (( k = 1; k <=i; k++ ));
+  do
+   echo -ne "x ";
+ done
+ echo;
+done
 
+## Print the legs
+for ((i=0; i < legSpaces; i++))
+do
+ printf " "
+done
 
-if [ "$var1" == "1" ]; then
+echo " | |"
 
-    for ((i=1;i < var2; i++ ));
-    do
-
-      for (( j = var2-1; j >= i; j-- ));
-      do
-        echo -ne " ";
-      done
-      for (( k = 1; k <=i; k++ ));
-       do
-        echo -ne " *";
-      done
-      echo;
-    done
-    for (( q = 0; q < var3; q++ )); do
-      echo  -ne " ";
-    done
-         echo " | |"
-    for (( w = 0; w < var3; w++ )); do
-      echo  -ne " ";
-    done
-       echo "_|_|_"
-
-
-fi
+for ((i=0; i < legSpaces; i++))
+do
+ printf " "
+done
+echo "_|_|_"

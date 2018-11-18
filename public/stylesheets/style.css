@@ -1,6 +1,7 @@
 body {
   padding: 0 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 15px !important;
 }
 
 /* NAVBAR */
