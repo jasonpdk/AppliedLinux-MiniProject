@@ -69,10 +69,14 @@ router.post('/exec/*', function(req, res, next) {
       } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
+    } else if (obj.Script == 'christmasTree') {
+      command = obj.Script + " " + req.body.height;
     } else {
       command = obj.Script;
     }
 
+    console.log(req.body);
+    console.log("Command: " + command);
     // execute the script
     exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
