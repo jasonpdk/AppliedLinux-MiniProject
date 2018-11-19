@@ -63,7 +63,7 @@ router.post('/exec/*', function(req, res, next) {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
     } else if (obj.Script == 'sysinf') {
-        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD;
+        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
     } else {
       command = obj.Script;
     }
