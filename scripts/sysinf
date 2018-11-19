@@ -25,7 +25,7 @@ do
         -g|gpu|--gpu)
                 echo ""
                 echo "GPU"
-                lspci | grep -i "graphics" | cut -d' ' -f2-
+                lspci | grep -i "VGA" | cut -d' ' -f2-
             ;;
         -m|mem|--mem)
             if [ -f $MEM_FILE ]; then
