@@ -25,6 +25,12 @@ information abou memory and swap
 .B "-h --hdd hdd"
 information about storage
 
+.B "-n --net net"
+information about network device
+
+.B "-s --snd snd"
+information about audio device
+
 .SH EXAMPLES
 .B "sysinf -c"
 --> display information about the cpu
