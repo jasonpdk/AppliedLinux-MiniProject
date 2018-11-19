@@ -48,6 +48,16 @@ do
                 echo "Cannot retrieve requested information"
             fi
             ;;
+        -n|net|--net)
+            echo ""
+            echo "Network"
+            lspci | grep -i "network" | cut -d' ' -f2-
+            ;;
+        -s|snd|--snd)
+            echo ""
+            echo "Sound"
+            lspci | grep -i "audio" | cut -d' ' -f2-
+            ;;
     esac
 
 done
