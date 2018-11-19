@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 
-# Name: Tomasz Klebek
-# Discription: create a triangle
-# Date: 2018-11-14
-
-VAR1=$1 #4
-
-for ((i=0;i<VAR1;i++))
+while [ ! $# -eq 0 ]
 do
-  for((w=0;i>w;w++))
-  do
-    printf "*"
-  done
-  printf "\n"
+	case "$1" in
+		--help | -h)
+			echo helpmenu
+			exit
+			;;
+		--take-over-world | -t)
+			echo secretopt
+			exit
+			;;
+    --ok | -o)
+			echo "your ok "
+			exit
+			;;
+    tom | -w)
+			echo Tom
+			exit
+			;;
+	esac
+	shift
 done
