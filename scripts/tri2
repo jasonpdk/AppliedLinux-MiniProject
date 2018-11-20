@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+
+
+string=$1
+key=$2
+iString=0
+jKey=0
+
+
+
+read -a SARRAY <<< $(echo "$string" | sed 's/./& /g')
+read -a KARRAY <<< $(echo "$key" | sed 's/./& /g')
+
+for each in "${SARRAY[@]}"
+do
+	keySize=${#KARRAY[*]}
+
+  echo -n " $each"
+	echo "$iString"
+	echo "$jKey"
+	iString=$((iString+1))
+  jKey=$((jKey+1))
+	if [[ "$jKey" -gt "(($keySize-1))" ]]; then
+		jKey=0
+		echo true
+	fi
+
+cipher=$((iString+jKey))
+echo $cipher
+
+done
+#
+# for each in "${KARRAY[@]}"
+# do
+#
+#   echo -n " $each"
+# 	echo  "$jKey"
+# 	jKey=$((jKey+1))
+#
+# done
