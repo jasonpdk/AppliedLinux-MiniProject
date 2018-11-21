@@ -110,3 +110,11 @@ for ((q=0;q < "${#strNum[@]}";q++)); do
 done
 
 echo "${cypherNum[@]}"
+
+for each in ${cypherNum[@]}; do
+  if [ "$each" -gt 25 ]; then
+    each=$((each-25))
+  fi
+  echo -ne "${alph[$each]}"
+done
+echo ""
