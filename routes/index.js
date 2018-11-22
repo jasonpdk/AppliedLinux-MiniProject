@@ -64,10 +64,14 @@ router.post('/exec/*', function(req, res, next) {
       }
     } else if (obj.Script == 'sysinf') {
         command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
+    } else if (obj.Script == 'christmasTree') {
+      command = obj.Script + " " + req.body.height;
     } else {
       command = obj.Script;
     }
 
+    console.log(req.body);
+    console.log("Command: " + command);
     // execute the script
     exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
