@@ -12,6 +12,9 @@ NUMBER_OF_FILES_TO_CREATE=$1
 LOCATION=$2
 FILE_NAME=$3
 EXTENSION=$4
+PROOF=$5
+POPULATE=$6
+SIZE=$7
 
 # if -p is passed instead of a path, files are created in current directory
 if [[ $2 == -p ]]; then
@@ -26,11 +29,18 @@ cd $LOCATION
 # create the dummy files
 for i in $(seq 1 $1)
 	do
-		touch $FILE_NAME$i'.'$EXTENSION
+        if [[ $POPULATE == -x ]]; then
+            < /dev/urandom tr -dc "[:alnum:]" | head -c$SIZE > $FILE_NAME$i'.'$EXTENSION
+        else
+            touch $FILE_NAME$i'.'$EXTENSION
+        fi
 	done
 
 # print tree directory structure where files were created
-tree
+#tree
+if [[ $5 == -t ]]; then
+    tree
+fi
 
 # return to the directory this command was invoked from
 cd $OLDPWD
