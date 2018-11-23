@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 # Name: Tomasz Klebek
-# Discription: Converts letters to a number between 0 and 25
-# depending on ther position in the alphabet
-# Date: 2018-11-19
+# Discription: vigenere cipher. google it for a discription
+# Date: 2018-11-21
 
 alph=(a b c d e f g h i j k l m n o p q r s t u v w x y z )
 

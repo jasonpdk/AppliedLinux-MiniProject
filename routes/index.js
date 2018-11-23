@@ -65,11 +65,12 @@ router.post('/exec/*', function(req, res, next) {
       console.log("TYPE " + req.body.type);
       if (req.body.type == 'numbers') {
         command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
-        console.log(command);
-      } else if (req.body.type == 'letters') {
+        console.log(command);      } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
-    } else {
+    } else if (obj.Script == 'Vigenere_cipher') {
+        command = obj.Script + " " + req.body.key + " " + req.body.string;
+    }else {
       command = obj.Script;
     }
 
