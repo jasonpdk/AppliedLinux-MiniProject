@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# bash script to display system information
+
+CPU_FILE="/proc/cpuinfo"
+GPU_FILE="/unknownLocation"
+MEM_FILE="/proc/meminfo"
+HDD_FILE="/proc/scsi/scsi"
+
+for arg in "$@"
+do
+    case $arg in
+        -c|cpu|--cpu)
+            if [ -f $CPU_FILE ]; then
+                echo ""
+                echo "CPU"
+                grep -i "vendor_id" $CPU_FILE | head -n 1
+                grep -i "model name" $CPU_FILE | head -n 1
+                grep -i "cpu cores" $CPU_FILE | head -n 1
+                echo "architecture    : `uname -p`"
+            else
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+        -g|gpu|--gpu)
+                echo ""
+                echo "GPU"
+                lspci | grep -i "VGA" | cut -d' ' -f2-
+            ;;
+        -m|mem|--mem)
+            if [ -f $MEM_FILE ]; then
+                echo ""
+                echo "Memory"
+                grep -i "MemTotal" $MEM_FILE
+                grep -i "MemFree" $MEM_FILE
+                grep -i "SwapTotal" $MEM_FILE
+            else
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+        -h|hdd|--hdd)
+            if [ -f $HDD_FILE ]; then
+                echo ""
+                echo "Storage"
+                cat $HDD_FILE
+            #df -h | grep -i "/dev/sd"
+            else
+                echo "Cannot retrieve requested information"
+            fi
+            ;;
+        -n|net|--net)
+            echo ""
+            echo "Network"
+            lspci | grep -i "network" | cut -d' ' -f2-
+            ;;
+        -s|snd|--snd)
+            echo ""
+            echo "Sound"
+            lspci | grep -i "audio" | cut -d' ' -f2-
+            ;;
+    esac
+
+done

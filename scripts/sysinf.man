@@ -1,0 +1,48 @@
+.\" Manpage for sysinf.
+.\" Contact zkrousky@gmail.com to correct errors or typos.
+.TH man 1 "02 Nov 2018" "1.0" "manpage for sysinf"
+.SH NAME
+sysinf \- retrive system information
+.SH SYNOPSIS
+.B "sysinf"
+[OPTION] ...
+.SH DESCRIPTION
+.B "sysinf
+is a shell script that retrieves information about the system from system files
+located in /proc and by using additional commands
+.SH OPTIONS
+The sysinf's options relate to the information required
+
+.B "-c --cpu cpu"
+information about the processor
+
+.B "-g --gpu gpu"
+information abou graphical card
+
+.B "-m --mem mem"
+information abou memory and swap
+
+.B "-h --hdd hdd"
+information about storage
+
+.B "-n --net net"
+information about network device
+
+.B "-s --snd snd"
+information about audio device
+
+.SH EXAMPLES
+.B "sysinf -c"
+--> display information about the cpu
+
+.B "sysinf cpu mem"
+--> display information about the cpu and memory
+
+.B "sysinf --cpu hdd -m"
+--> display information abou the cpu, storage and memory
+.SH SEE ALSO
+df(1), echo(1), uname(1)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Zdenek Krousky (zkrousky@gmail.com)
