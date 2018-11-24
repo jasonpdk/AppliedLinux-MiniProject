@@ -8,7 +8,7 @@ help() {
     echo "-s [value]    --> size in Bytes"
     echo "-f [value]    --> filename"
     echo "-e [value]    --> extension"
-    echo "-x            --> populate with Bytes"
+    echo "-h            --> this help"
     echo "-t            --> display created files"
 }
 
@@ -17,8 +17,7 @@ FILEPATH=./
 SIZE=100
 FILENAME=file
 EXTENSION=txt
-POPULATE=no
-TREE=no
+TREE=false
 
 while getopts "n:p:s:f:e:th" opt; do
     case "${opt}" in
@@ -38,7 +37,7 @@ while getopts "n:p:s:f:e:th" opt; do
             EXTENSION=$OPTARG
             ;;
         t)
-            TREE=yes
+            TREE=true
             ;;
         h)
             help
@@ -52,8 +51,6 @@ while getopts "n:p:s:f:e:th" opt; do
 done
 shift $((OPTIND -1))
 
-echo "$NUMBER_OF_FILES $FILEPATH $SIZE $FILENAME $EXTENSION $POPULATE"
-
 cd $FILEPATH
 
 for item in $(seq 1 $NUMBER_OF_FILES); do
@@ -64,7 +61,7 @@ for item in $(seq 1 $NUMBER_OF_FILES); do
         fi
 done
 
-if [[ $TREE == yes ]]; then
+if [[ $TREE == true ]]; then
     tree
 fi
 
