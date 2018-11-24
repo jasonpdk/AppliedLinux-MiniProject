@@ -9,3 +9,12 @@ function selectType() {
      document.getElementById("update").innerHTML = numbersHTML;
    }
  }
+
+function fillOptionHTML() {
+  var html = "<label>Size in bytes:</label><input type=\"number\" id=\"size\" name=\"size\" min=\"1\" placeholder=\"Size in bytes\" /><br />";
+  if (document.getElementById("fillOpt").checked == true) {
+    document.getElementById("showHTML").innerHTML = html;
+  } else {
+    document.getElementById("showHTML").innerHTML = "";
+  }
+}

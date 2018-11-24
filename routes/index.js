@@ -66,6 +66,44 @@ router.post('/exec/*', function(req, res, next) {
         command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
     } else if (obj.Script == 'christmasTree') {
       command = obj.Script + " " + req.body.height;
+    } else if (obj.Script == 'cf') {
+      console.log(req.body);
+      command = obj.Script;
+      if (req.body.numFiles != '') {
+        command += " -n " + req.body.numFiles;
+      } else {
+        command += " -n 1";
+      }
+
+      if (req.body.location != '') {
+        command += " -p " + req.body.location;
+      } else {
+        command += " -p .";
+      }
+
+      if (req.body.name != '') {
+        command += " -f " + req.body.name;
+      } else {
+        command += " -f file";
+      }
+
+      if (req.body.extension != '') {
+        command += " -e " + req.body.extension;
+      } else {
+        command += " -e txt";
+      }
+
+      if (req.body.tree == 'true') {
+        command += " -t";
+      }
+
+      if (req.body.fill == 'true') {
+        if (req.body.size != '') {
+          command += " -s " + req.body.size;
+        } else {
+          command += " -s 1";
+        }
+      }
     } else {
       command = obj.Script;
     }
