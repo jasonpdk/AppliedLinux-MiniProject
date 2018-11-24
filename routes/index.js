@@ -59,6 +59,12 @@ router.post('/exec/*', function(req, res, next) {
     } else if (obj.Script == 'RWX777') {
       if (req.body.type == 'numbers') {
         command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
+
+        console.log(command);      } else if (req.body.type == 'letters') {
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
+      }
+    
+
       } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
@@ -66,7 +72,9 @@ router.post('/exec/*', function(req, res, next) {
         command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
     } else if (obj.Script == 'christmasTree') {
       command = obj.Script + " " + req.body.height;
-    } else {
+    } else if (obj.Script == 'Vigenere_cipher') {
+        command = obj.Script + " " + req.body.key + " " + req.body.string;
+    }else {
       command = obj.Script;
     }
 

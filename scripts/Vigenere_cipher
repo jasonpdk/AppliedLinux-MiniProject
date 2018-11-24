@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 # Name: Tomasz Klebek
-# Discription: Converts letters to a number between 0 and 25
-# depending on ther position in the alphabet
-# Date: 2018-11-19
+# Discription: vigenere cipher. google it for a discription
+# Date: 2018-11-21
 
 alph=(a b c d e f g h i j k l m n o p q r s t u v w x y z )
 
@@ -110,3 +109,11 @@ for ((q=0;q < "${#strNum[@]}";q++)); do
 done
 
 echo "${cypherNum[@]}"
+
+for each in ${cypherNum[@]}; do
+  if [ "$each" -gt 25 ]; then
+    each=$((each-25))
+  fi
+  echo -ne "${alph[$each]}"
+done
+echo ""
