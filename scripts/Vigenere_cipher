@@ -15,75 +15,58 @@ key=$1
 
 
 #-----------------------STRING------------------------------
+#read in  string and put into array SARRAY
   read -a SARRAY <<< $(echo "$string" | sed 's/./& /g')
 
    j=0
    w=0
    i=0
    n=0
-
+#compare the number of elements in SARRAY and strNum and keep
+#looping through till all the element in SARRAY have been changed for
+#numbers then add those numbers to strNum array.
   while [ "${#strNum[@]}" -lt "${#SARRAY[@]}" ]; do
-
     if [[ "${SARRAY[$w]}" != "${alph[$j]}" ]]; then
-      # echo "j=$j"
-      # echo "w=$w"
-      # echo "alph=${alph[$j]}"
-      # echo "SARRAY=${SARRAY[$w]}"
-      # echo =================================
       j=$((j+1))
-
+#if the counter exceeds the number of elements in the alpabet
+#start again at the begining
       if [ "$j" -gt 25 ]; then
         j=0
       fi
-
     elif [[ "${SARRAY[$w]}" == "${alph[$j]}" ]]; then
-      # echo +++++++++++++++++
-      # echo "w=$w"
       w=$((w+1))
-      # echo "w=$w"
-      # echo "n=$n"
       strNum[n]="$j"
       n=$((n+1))
       j=0
     fi
-
   done
 
 #-----------------------KEY------------------------------
+#read in the key enterd and put into KARRAY
+#again check all the elements and convert them to numbers
+#and save in ot keyNum
   read -a KARRAY <<< $(echo "$key" | sed 's/./& /g')
 
    j=0
    w=0
-
    i=0
    n=0
 
   while [ "${#keyNum[@]}" -lt "${#KARRAY[@]}" ]; do
-
     if [[ "${KARRAY[$w]}" != "${alph[$j]}" ]]; then
-      # echo "j=$j"
-      # echo "w=$w"
-      # echo "alph=${alph[$j]}"
-      # echo "SARRAY=${SARRAY[$w]}"
-      # echo =================================
       j=$((j+1))
-
       if [ "$j" -gt 25 ]; then
         j=0
       fi
-
     elif [[ "${KARRAY[$w]}" == "${alph[$j]}" ]]; then
-      # echo +++++++++++++++++
-      # echo "w=$w"
       w=$((w+1))
-      # echo "w=$w"
-      # echo "n=$n"
       keyNum[n]="$j"
       n=$((n+1))
       j=0
     fi
   done
-
+#echo the enterd and saved element from boath key and string entered
+# for testing correct input and output
 echo "${keyNum[@]}"
 for each in ${keyNum[@]}; do
   echo -ne "${alph[$each]}"
@@ -96,20 +79,25 @@ for each in ${strNum[@]}; do
 done
 echo ""
 
-for ((q=0;q < "${#strNum[@]}";q++)); do
-  cypherNum[$q]=$(( ${strNum[$q]}+${keyNum[$q]} ))
-  # echo q-1=$(($q-1))
-  # echo q=$q
-  # echo ${#keyNum[@]}
-  # echo ++++++++++++
-  # if [[ "$q" == "${#keyNum[@]}" ]]; then
-  #   echo "ife
-  #   q=0
-  # fi
+# add together corasponding enteries from strNumand keyNum
+# and save to cypherNum
+kn=${#keyNum[@]}
+sn=${#strNum[@]}
+
+while [ "$qw" != "$sn" ]; do
+  if [ "$q" != "$kn" ]; then
+    cypherNum[$qw]=$(( ${strNum[$qw]}+${keyNum[$q]} ))
+    ((q++))
+    ((qw++))
+  else
+    q=0
+  fi
 done
 
-echo "${cypherNum[@]}"
 
+echo "${cypherNum[@]}"
+#use the elements from cypherNum to select apropriate letters from
+#the alpabet
 for each in ${cypherNum[@]}; do
   if [ "$each" -gt 25 ]; then
     each=$((each-25))
