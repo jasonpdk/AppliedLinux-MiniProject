@@ -61,11 +61,19 @@ router.post('/exec/*', function(req, res, next) {
         command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
       } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
+      } else if (req.body.type == 'letters') {
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
     } else if (obj.Script == 'sysinf') {
-        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
+      command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
     } else if (obj.Script == 'christmasTree') {
       command = obj.Script + " " + req.body.height;
+    } else if (obj.Script == 'Vigenere_cipher') {
+      if (req.body.type == 'encrypt') {
+        command = obj.Script + " " + "-e" + " " + req.body.key + " " + req.body.string;
+      } else if (req.body.type == 'decrypt') {
+        command = obj.Script + " " + "-d" + " " + req.body.key + " " + req.body.string;
+      }
     } else {
       command = obj.Script;
     }

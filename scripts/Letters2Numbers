@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Name: Tomasz Klebek
+# Discription: Converts letters to a number between 0 and 25
+# depending on ther position in the alphabet
+# Date: 2018-11-19
+
+alph=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
+
+strNum=0
+
+function name () {
+
+  local string=$1
+  read -a SARRAY <<< $(echo "$string" | sed 's/./& /g')
+
+  local j=0
+  local w=0
+  local i=0
+  local n=0
+
+  while [ "${#strNum[@]}" -lt "${#SARRAY[@]}" ]; do
+
+    if [[ "${SARRAY[$w]}" != "${alph[$j]}" ]]; then
+      # echo "j=$j"
+      # echo "w=$w"
+      # echo "alph=${alph[$j]}"
+      # echo "SARRAY=${SARRAY[$w]}"
+      # echo =================================
+      j=$((j+1))
+
+      if [ "$j" -gt 25 ]; then
+        j=0
+      fi
+
+    elif [[ "${SARRAY[$w]}" == "${alph[$j]}" ]]; then
+      # echo +++++++++++++++++
+      # echo "w=$w"
+      w=$((w+1))
+      # echo "w=$w"
+      # echo "n=$n"
+      strNum[n]="$j"
+      n=$((n+1))
+      j=0
+    fi
+
+  done
+
+  echo "${strNum[@]}"
+  for each in ${strNum[@]}; do
+    echo -ne "${alph[$each]}"
+  done
+  echo ""
+}
+
+name "$1"
