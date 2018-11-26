@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # creates a number of empty dummy test files based on specified name, extension
 # and location, if no location is specified, files are created in the current directory
 #
@@ -13,14 +13,12 @@ LOCATION=$2
 FILE_NAME=$3
 EXTENSION=$4
 
-# check if a PATH parameter was invoked, if not, assign location
-# of creation of the files to current directory
-if [ -n "$LOCATION" ]; then
-	LOCATION=$2
-
-# otherwise use specified location
-elif [ -z "$LOCATION" ]; then
+# if -p is passed instead of a path, files are created in current directory
+if [[ $2 == -p ]]; then
 	LOCATION=${PWD}
+# otherwise they are created in specified directory
+else
+    LOCATION=$2
 fi
 
 cd $LOCATION
@@ -30,6 +28,9 @@ for i in $(seq 1 $1)
 	do
 		touch $FILE_NAME$i'.'$EXTENSION
 	done
+
+# print tree directory structure where files were created
+tree
 
 # return to the directory this command was invoked from
 cd $OLDPWD

@@ -5,27 +5,27 @@
 notes \- command line notes script
 .SH SYNOPSIS
 .B "notes"
-[FILE_NAME or -d for DATE_NAME] [LOCATION]
+[FILE_NAME or -d for DATE_NAME] [LOCATION] [NOTE in double quotes]
 .SH DESCRIPTION
 .B "notes"
 is a bash script that allows the user to create quick to-do notes inside the terminal. The script checks, if a notes file is
 present in the given or current folder. If so it simply appends new text to the existing content otherwise it creates a
-new file. The name can be specified as the first argument after the invocation of the command, otherwise, the scripts creates
-a file with the current date name.
-Every time
+new file. The name can be specified as the first argument after the invocation of the command or a
+.B "-d"
+option can be set in which case, the scripts creates
+a file with the current date as it's name. Every time
 .B "notes"
 is invoked for a specific file a new entry is created marked
 by current time.
-.B "-d"
-option has to be used if creating files with date name in locations other than the current directory.
 .SH OPTIONS
 Options for
 .B "notes"
-are the name of the file or the -d switch and the location of the file. If both are empty, file with date name in current directory
-is created and new text added to it's content
+are the name of the file or the
+.B "-d"
+switch and the location of the file.
 
 .B "-d"
-	create a file with DATE as it's name in other than the current directory
+	create a file with DATE as it's name
 .SH SEE ALSO
 cat(1)
 .SH BUGS

@@ -43,37 +43,39 @@ router.post('/exec/*', function(req, res, next) {
   }, function(err, obj) {
     var command = "";
 
-    console.log(req.body);
     // adjust the command for each script
-    console.log("ID " + obj.id);
     if (obj.Script == 'tf') {
       command = obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
     } else if (obj.Script == 'notes') {
       command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
     } else if (obj.Script == 'ls') { // ls
       command = obj.Script + " " + req.body.dir;
-      console.log(command);
     } else if (obj.Script == 'cowsay') {
-      console.log(req.body);
       if (req.body.cow == "") {
         command = "fortune | " + obj.Script;
       } else {
         command = obj.Script + " " + req.body.cow;
-        console.log(command);
       }
     } else if (obj.Script == 'RWX777') {
-      console.log("TYPE " + req.body.type);
       if (req.body.type == 'numbers') {
         command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
-        console.log(command);      } else if (req.body.type == 'letters') {
+      } else if (req.body.type == 'letters') {
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
+      } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
+    } else if (obj.Script == 'sysinf') {
+        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
+    } else if (obj.Script == 'christmasTree') {
+      command = obj.Script + " " + req.body.height;
     } else if (obj.Script == 'Vigenere_cipher') {
-        command = obj.Script + " " + req.body.key + " " + req.body.string;
-    }else {
+      command = obj.Script + " " + req.body.key + " " + req.body.string;
+    } else {
       command = obj.Script;
     }
 
+    console.log(req.body);
+    console.log("Command: " + command);
     // execute the script
     exec(command, function(error, stdout, stderr) {
       console.log(`${stdout}`);
