@@ -70,8 +70,8 @@ router.post('/exec/*', function(req, res, next) {
     } else if (obj.Script == 'christmasTree') {
       command = obj.Script + " " + req.body.height;
     } else if (obj.Script == 'Vigenere_cipher') {
-        command = obj.Script + " " + req.body.key + " " + req.body.string;
-    }else {
+      command = obj.Script + " " + req.body.key + " " + req.body.string;
+    } else {
       command = obj.Script;
     }
 
