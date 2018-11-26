@@ -62,9 +62,6 @@ router.post('/exec/*', function(req, res, next) {
 
         console.log(command);      } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
-      }
-    
-
       } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
