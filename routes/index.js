@@ -44,29 +44,7 @@ router.post('/exec/*', function(req, res, next) {
     var command = "";
 
     // adjust the command for each script
-    if (obj.Script == 'tf') {
-      command = obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
-    } else if (obj.Script == 'notes') {
-      command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
-    } else if (obj.Script == 'ls') { // ls
-      command = obj.Script + " " + req.body.dir;
-    } else if (obj.Script == 'cowsay') {
-      if (req.body.cow == "") {
-        command = "fortune | " + obj.Script;
-      } else {
-        command = obj.Script + " " + req.body.cow;
-      }
-    } else if (obj.Script == 'RWX777') {
-      if (req.body.type == 'numbers') {
-        command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
-      } else if (req.body.type == 'letters') {
-        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
-      }
-    } else if (obj.Script == 'sysinf') {
-        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
-    } else if (obj.Script == 'christmasTree') {
-      command = obj.Script + " " + req.body.height;
-    } else if (obj.Script == 'cf') {
+    if (obj.Script == 'cf') {
       console.log(req.body);
       command = obj.Script;
       if (req.body.numFiles != '') {
@@ -104,6 +82,26 @@ router.post('/exec/*', function(req, res, next) {
           command += " -s 1";
         }
       }
+    } else if (obj.Script == 'notes') {
+      command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
+    } else if (obj.Script == 'ls') { // ls
+      command = obj.Script + " " + req.body.dir;
+    } else if (obj.Script == 'cowsay') {
+      if (req.body.cow == "") {
+        command = "fortune | " + obj.Script;
+      } else {
+        command = obj.Script + " " + req.body.cow;
+      }
+    } else if (obj.Script == 'RWX777') {
+      if (req.body.type == 'numbers') {
+        command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
+      } else if (req.body.type == 'letters') {
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
+      }
+    } else if (obj.Script == 'sysinf') {
+        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
+    } else if (obj.Script == 'christmasTree') {
+      command = obj.Script + " " + req.body.height;
     } else {
       command = obj.Script;
     }
