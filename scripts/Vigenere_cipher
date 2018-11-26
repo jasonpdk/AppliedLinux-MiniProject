@@ -10,8 +10,8 @@ strNum=0
 keyNum=0
 cypherNum=0
 
-string=$2
-key=$1
+string=$3
+key=$2
 
 
 #-----------------------STRING------------------------------
@@ -65,43 +65,81 @@ key=$1
       j=0
     fi
   done
+#------------------------------------------------------------
 #echo the enterd and saved element from boath key and string entered
 # for testing correct input and output
-echo "${keyNum[@]}"
-for each in ${keyNum[@]}; do
-  echo -ne "${alph[$each]}"
-done
-echo ""
 
-echo "${strNum[@]}"
-for each in ${strNum[@]}; do
-  echo -ne "${alph[$each]}"
-done
-echo ""
+#****************************************
+#
+#****************************************
+# echo "${keyNum[@]}"
+# for each in ${keyNum[@]}; do
+#   echo -ne "${alph[$each]}"
+# done
+# echo ""
+#
+# echo "${strNum[@]}"
+# for each in ${strNum[@]}; do
+#   echo -ne "${alph[$each]}"
+# done
+# echo ""
+#****************************************
+#
+#****************************************
 
 # add together corasponding enteries from strNumand keyNum
 # and save to cypherNum
 kn=${#keyNum[@]}
 sn=${#strNum[@]}
 
-while [ "$qw" != "$sn" ]; do
-  if [ "$q" != "$kn" ]; then
-    cypherNum[$qw]=$(( ${strNum[$qw]}+${keyNum[$q]} ))
-    ((q++))
-    ((qw++))
-  else
-    q=0
-  fi
-done
 
+while getopts e:d: option ; do
+  case "${option}"
+    in
+    e)#+++++++++++++++++++++++++++++++++++++++++++++
+      while [ "$qw" != "$sn" ]; do
+        if [ "$q" != "$kn" ]; then
+          cypherNum[$qw]=$(( ${strNum[$qw]}+${keyNum[$q]} ))
+          ((q++))
+          ((qw++))
+        else
+          q=0
+        fi
+      done
+      #echo "cypherNum${cypherNum[@]}"
+      echo -ne "output: "
+      for each in ${cypherNum[@]}; do
+        if [ "$each" -gt 25 ]; then
+          each=$((each-25))
+        fi
 
-echo "${cypherNum[@]}"
-#use the elements from cypherNum to select apropriate letters from
-#the alpabet
-for each in ${cypherNum[@]}; do
-  if [ "$each" -gt 25 ]; then
-    each=$((each-25))
-  fi
-  echo -ne "${alph[$each]}"
+        echo -ne "${alph[$each]}"
+      done
+      echo ""
+
+    ;;
+    d)#++++++++++++++++++++++++++++++++++++++++++++++++
+
+      while [ "$qw" != "$sn" ]; do
+        if [ "$q" != "$kn" ]; then
+          decypherNum[$qw]=$(( ${strNum[$qw]}-${keyNum[$q]} ))
+          ((q++))
+          ((qw++))
+        else
+          q=0
+        fi
+      done
+      #echo "decypherNum${decypherNum[@]}"
+      echo -ne "output: "
+      for each in ${decypherNum[@]}; do
+        if [ "$each" -lt 1 ]; then
+          each=$((each+25))
+        fi
+
+        echo -ne "${alph[$each]}"
+      done
+      echo ""
+
+    ;;
+  esac
 done
-echo ""
