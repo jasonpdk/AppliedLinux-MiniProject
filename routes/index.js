@@ -44,8 +44,44 @@ router.post('/exec/*', function(req, res, next) {
     var command = "";
 
     // adjust the command for each script
-    if (obj.Script == 'tf') {
-      command = obj.Script + " " + req.body.numFiles + " " + req.body.location + " " + req.body.name + " " + req.body.extension;
+    if (obj.Script == 'cf') {
+      console.log(req.body);
+      command = obj.Script;
+      if (req.body.numFiles != '') {
+        command += " -n " + req.body.numFiles;
+      } else {
+        command += " -n 1";
+      }
+
+      if (req.body.location != '') {
+        command += " -p " + req.body.location;
+      } else {
+        command += " -p .";
+      }
+
+      if (req.body.name != '') {
+        command += " -f " + req.body.name;
+      } else {
+        command += " -f file";
+      }
+
+      if (req.body.extension != '') {
+        command += " -e " + req.body.extension;
+      } else {
+        command += " -e txt";
+      }
+
+      if (req.body.tree == 'true') {
+        command += " -t";
+      }
+
+      if (req.body.fill == 'true') {
+        if (req.body.size != '') {
+          command += " -s " + req.body.size;
+        } else {
+          command += " -s 1";
+        }
+      }
     } else if (obj.Script == 'notes') {
       command = obj.Script + " " + req.body.name + " " + req.body.location + " \"" + req.body.text + "\"";
     } else if (obj.Script == 'ls') { // ls
@@ -61,11 +97,19 @@ router.post('/exec/*', function(req, res, next) {
         command = obj.Script + " " + req.body.numberEntry1 + " " + req.body.numberEntry2 + " " + req.body.numberEntry3;
       } else if (req.body.type == 'letters') {
         command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
+      } else if (req.body.type == 'letters') {
+        command = obj.Script + " " + req.body.letterEntry1 + " " + req.body.letterEntry2 + " " + req.body.letterEntry3;
       }
     } else if (obj.Script == 'sysinf') {
-        command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
+      command = obj.Script + " " + req.body.CPU + " " + req.body.GPU + " " + req.body.MEM + " " + req.body.HDD + " " + req.body.NET + " " + req.body.SND;
     } else if (obj.Script == 'christmasTree') {
       command = obj.Script + " " + req.body.height;
+    } else if (obj.Script == 'Vigenere_cipher') {
+      if (req.body.type == 'encrypt') {
+        command = obj.Script + " " + "-e" + " " + req.body.key + " " + req.body.string;
+      } else if (req.body.type == 'decrypt') {
+        command = obj.Script + " " + "-d" + " " + req.body.key + " " + req.body.string;
+      }
     } else {
       command = obj.Script;
     }

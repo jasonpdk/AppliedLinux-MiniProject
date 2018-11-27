@@ -7,6 +7,8 @@ GPU_FILE="/unknownLocation"
 MEM_FILE="/proc/meminfo"
 HDD_FILE="/proc/scsi/scsi"
 
+echo $0 $@
+
 for arg in "$@"
 do
     case $arg in

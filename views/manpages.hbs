@@ -28,7 +28,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. tf (Touch Files)</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. cf (Create Files)</a>
             </h4>
           </div>
 
@@ -39,31 +39,85 @@
               <a name="NAME"></a>
               </h2>
 
-              <p style="margin-left:11%; margin-top: 1em">tf &minus; create empty dummy files</p>
+
+              <p style="margin-left:11%; margin-top: 1em">cf &minus;
+              create empty dummy files</p>
 
               <h2>SYNOPSIS
               <a name="SYNOPSIS"></a>
               </h2>
 
-              <p style="margin-left:11%; margin-top: 1em"><b>tf</b> [NUMBER_OF_FILES] [LOCATION]</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>cf</b>
+              [OPTIONS]...</p>
 
               <h2>DESCRIPTION
               <a name="DESCRIPTION"></a>
               </h2>
 
-              <p style="margin-left:11%; margin-top: 1em"><b>tf</b> is a shell program to create a number of empty dummy files. The user can specify number of files to be created and their location. If no location is specified, the files are created in current working directory. The user is prompted to input
-                the <b>filename</b> and the <b>extension</b> of the file after invoking the program and is informed afterwards where the files have been created.</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>cf</b> is a
+              shell program to create a number of dummy files. The user
+              can specify number of files to be created and their
+              location. Location must be specified even if creating the
+              files in current working directory. After creating the files
+              a tree directory structure is displayed.</p>
 
               <h2>OPTIONS
               <a name="OPTIONS"></a>
               </h2>
 
-              <p style="margin-left:11%; margin-top: 1em">The tf&rsquo;s options are the number of files to be created and their location.
-              </p>
+
+              <p style="margin-left:11%; margin-top: 1em">The cf&rsquo;s
+              options are the number of files to be created, location,
+              file name pattern and extension, size, display tree and
+              help</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-n
+              [value]</b> specify number of files to be created</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-p
+              [value]</b> create files in current directory, must be
+              followed by a path to the location</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-f
+              [value]</b> specify file name pattern</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-e
+              [value]</b> specify file extension pattern</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-s
+              [value]</b> populate the files with random characters,
+              specify the size of the files</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-t</b>
+              display directory structure to confirm files were
+              created</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>-h</b>
+              display help for cf</p>
+
+              <h2>EXAMPLES
+              <a name="EXAMPLES"></a>
+              </h2>
+
+
+              <p style="margin-left:11%; margin-top: 1em"><b>cf</b>
+              --&gt; create one empty file named file1.txt of size</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>cf -n 3 -p .
+              -f test -e xxx -s 1000 -t</b> --&gt; create three files in
+              current directory, name them test*.xxx and populate them
+              with random characters to size of 1000 Bytes</p>
+
+              <p style="margin-left:11%; margin-top: 1em"><b>cf -n 3 -e
+              ppp -s 500 -t -p ./test</b> --&gt; create three files, named
+              file*.ppp of size 500 Bytes in specified directory</p>
 
               <h2>SEE ALSO
               <a name="SEE ALSO"></a>
               </h2>
+
 
               <p style="margin-left:11%; margin-top: 1em">touch(1)</p>
 
@@ -71,16 +125,18 @@
               <a name="BUGS"></a>
               </h2>
 
-              <p style="margin-left:11%; margin-top: 1em">No known bugs.
-              </p>
+
+              <p style="margin-left:11%; margin-top: 1em">No known
+              bugs.</p>
 
               <h2>AUTHOR
               <a name="AUTHOR"></a>
               </h2>
 
-              <p style="margin-left:11%; margin-top: 1em">Zdenek Krousky (zkrousky@gmail.com)
+
+              <p style="margin-left:11%; margin-top: 1em">Zdenek Krousky
+              (zkrousky@gmail.com)
               </p>
-              <hr>
             </div>
           </div>
         </div>
