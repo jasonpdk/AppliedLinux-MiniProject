@@ -16,7 +16,7 @@ key=$2
 
 #-----------------------STRING------------------------------
 #read in  string and put into array SARRAY
-  read -a SARRAY <<< $(echo "$string" | sed 's/./& /g')
+  read -a SARRAY <<< $(echo "$string" | tr '[:upper:]' '[:lower:]' | sed 's/./& /g')
 
    j=0
    w=0
@@ -45,7 +45,7 @@ key=$2
 #read in the key enterd and put into KARRAY
 #again check all the elements and convert them to numbers
 #and save in ot keyNum
-  read -a KARRAY <<< $(echo "$key" | sed 's/./& /g')
+  read -a KARRAY <<< $(echo "$key" | tr '[:upper:]' '[:lower:]' | sed 's/./& /g')
 
    j=0
    w=0
