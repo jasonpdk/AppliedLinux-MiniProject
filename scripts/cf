@@ -1,0 +1,70 @@
+#!/bin/bash
+
+help() {
+    echo "HELP"
+    echo "for detailed explanation see the manpage for tf"
+    echo "-n [value]    --> number of files"
+    echo "-p [value]    --> filepath"
+    echo "-s [value]    --> size in Bytes"
+    echo "-f [value]    --> filename"
+    echo "-e [value]    --> extension"
+    echo "-h            --> this help"
+    echo "-t            --> display created files"
+}
+
+NUMBER_OF_FILES=1
+FILEPATH=./
+SIZE=0
+FILENAME=file
+EXTENSION=txt
+TREE=false
+
+echo $0 $@
+
+while getopts "n:p:s:f:e:th" opt; do
+    case "${opt}" in
+        n)
+            NUMBER_OF_FILES=$OPTARG
+            ;;
+        p)
+            FILEPATH=$OPTARG
+            ;;
+        s)
+            SIZE=$OPTARG
+            ;;
+        f)
+            FILENAME=$OPTARG
+            ;;
+        e)
+            EXTENSION=$OPTARG
+            ;;
+        t)
+            TREE=true
+            ;;
+        h)
+            help
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument"
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND -1))
+
+cd $FILEPATH
+
+for item in $(seq 1 $NUMBER_OF_FILES); do
+        if [ -n $SIZE  ]; then
+            < /dev/urandom tr -dc "[:alnum:]" | head -c$SIZE > $FILENAME$item'.'$EXTENSION
+        else
+            touch $FILENAME$item'.'$EXTENSION
+        fi
+done
+
+if [[ $TREE == true ]]; then
+    tree
+fi
+
+cd ${OLDPWD}
