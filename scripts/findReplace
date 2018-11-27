@@ -1,0 +1,6 @@
+#!/bin/bash
+FIND=$1
+REPLACE=$2
+FILE_NAME=$3
+
+sed -i -e "s/$FIND/$REPLACE/g" $FILE_NAME

@@ -178,4 +178,29 @@ router.get('/manpages', function(req, res, next) {
     title: "Man Pages"
   });
 });
+
+router.post('/upload', function(req, res) {
+  let sampleFile = req.files.theFile;
+  var location = '/home/jason/MiniProject/upload/' + sampleFile.name;
+  var command = "findReplace " + req.body.find + " " + req.body.replace + " " + location;
+
+  sampleFile.mv(location, function(err) {
+    if (err) {
+      throw err;
+    }
+
+    exec(command, function(error, stdout, stderr) {
+      console.log(`${stdout}`);
+      theScriptOutput = `${stdout}`;
+      theScriptOutput += `${stderr}`;
+      console.log(`${stderr}`);
+      if (error !== null) {
+        console.log(`exec error: ${error}`);
+      }
+
+      res.download(location);
+    });
+  });
+});
+
 module.exports = router;
