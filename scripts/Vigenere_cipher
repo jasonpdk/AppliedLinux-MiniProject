@@ -4,7 +4,7 @@
 # Discription: vigenere cipher. google it for a discription
 # Date: 2018-11-21
 
-alph=(a b c d e f g h i j k l m n o p q r s t u v w x y z )
+alph=("" a b c d e f g h i j k l m n o p q r s t u v w x y z )
 
 strNum=0
 keyNum=0
@@ -30,7 +30,7 @@ key=$2
       j=$((j+1))
 #if the counter exceeds the number of elements in the alpabet
 #start again at the begining
-      if [ "$j" -gt 25 ]; then
+      if [ "$j" -gt 26 ]; then
         j=0
       fi
     elif [[ "${SARRAY[$w]}" == "${alph[$j]}" ]]; then
@@ -55,7 +55,7 @@ key=$2
   while [ "${#keyNum[@]}" -lt "${#KARRAY[@]}" ]; do
     if [[ "${KARRAY[$w]}" != "${alph[$j]}" ]]; then
       j=$((j+1))
-      if [ "$j" -gt 25 ]; then
+      if [ "$j" -gt 26 ]; then
         j=0
       fi
     elif [[ "${KARRAY[$w]}" == "${alph[$j]}" ]]; then
@@ -109,8 +109,8 @@ while getopts e:d: option ; do
       #echo "cypherNum${cypherNum[@]}"
       echo -ne "output: "
       for each in ${cypherNum[@]}; do
-        if [ "$each" -gt 25 ]; then
-          each=$((each-25))
+        if [ "$each" -gt 26 ]; then
+          each=$((each-26))
         fi
 
         echo -ne "${alph[$each]}"
@@ -133,7 +133,7 @@ while getopts e:d: option ; do
       echo -ne "output: "
       for each in ${decypherNum[@]}; do
         if [ "$each" -lt 1 ]; then
-          each=$((each+25))
+          each=$((each+26))
         fi
 
         echo -ne "${alph[$each]}"
