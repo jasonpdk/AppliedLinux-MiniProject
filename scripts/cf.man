@@ -1,0 +1,55 @@
+.\" Manpage for cf.
+.\" Contact zkrousky@gmail.com to correct errors or typos.
+.TH man 1 "02 Nov 2018" "1.0" "manpage for cf"
+.SH NAME
+cf \- create empty dummy files
+.SH SYNOPSIS
+.B "cf"
+[OPTIONS]...
+.SH DESCRIPTION
+.B "cf"
+is a shell program to create a number of dummy files. The user can specify number of files to be created and
+their location.  Location must be specified even if creating the files in
+current working directory. After creating  the files a tree directory structure is displayed.
+.SH OPTIONS
+The cf's options are the number of files to be created, location,
+file name pattern and extension, size, display tree and help
+
+.B "-n [value]"
+specify number of files to be created
+
+.B "-p [value]"
+create files in current directory, must be followed by a path to the location
+
+.B "-f [value]"
+specify file name pattern
+
+.B "-e [value]"
+specify file extension pattern
+
+.B "-s [value]"
+populate the files with random characters, specify the size of the files
+
+.B "-t"
+display directory structure to confirm files were created
+
+.B "-h"
+display help for cf
+
+.SH EXAMPLES
+.B "cf"
+--> create one empty file named file1.txt of size
+
+.B "cf -n 3 -p . -f test -e xxx -s 1000 -t"
+--> create three files in current directory, name them test*.xxx and populate
+them with random characters to size of 1000 Bytes
+
+.B "cf -n 3 -e ppp -s 500 -t -p ./test "
+--> create three files, named file*.ppp of size 500 Bytes in specified directory
+
+.SH SEE ALSO
+touch(1)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Zdenek Krousky (zkrousky@gmail.com)
