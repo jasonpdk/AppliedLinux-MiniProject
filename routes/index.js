@@ -70,9 +70,9 @@ router.post('/exec/*', function(req, res, next) {
       command = obj.Script + " " + req.body.height;
     } else if (obj.Script == 'Vigenere_cipher') {
       if (req.body.type == 'encrypt') {
-        command = obj.Script + " " + "-e" + " " + req.body.key + " " + req.body.string;
+        command = obj.Script + " " + "-e" + " " + req.body.key + " " + "\"" + req.body.string + "\"";
       } else if (req.body.type == 'decrypt') {
-        command = obj.Script + " " + "-d" + " " + req.body.key + " " + req.body.string;
+        command = obj.Script + " " + "-d" + " " + req.body.key + " " + "\"" + req.body.string + "\"";
       }
     } else {
       command = obj.Script;
