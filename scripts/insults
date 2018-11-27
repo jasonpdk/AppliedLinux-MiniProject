@@ -1,0 +1,59 @@
+#!/bin/bash
+
+ran=$(( RANDOM % 10 + 1));
+
+
+if [ "$ran" == "1" ];
+ then
+	 echo "go play in the road like a good lad!"
+fi
+
+if [ "$ran" == "2" ];
+ then
+	 echo "You smell like a bag of shite"
+fi
+
+if [ "$ran" == "3" ];
+ then
+	 echo "You look like the back of bus"
+fi
+
+if [ "$ran" == "4" ];
+ then
+	 echo "Googly-eyed ba*****d"
+fi
+
+if [ "$ran" == "5" ];
+ then
+	 echo "If laughter is the best medice your face must be curing the world"
+fi
+
+if [ "$ran" == "6" ];
+ then
+	 echo "You sir are a oxygen thief"
+fi
+
+if [ "$ran" == "7" ];
+ then
+	 echo "Please shut your mouth when you're talking me"
+fi
+
+if [ "$ran" == "8" ];
+ then
+	 echo "Cheeseburger walrus looking muthaf**ker"
+fi
+
+if [ "$ran" == "9" ];
+ then
+	 echo "If you really spoke your mind you'd be speechless"
+fi
+
+if [ "$ran" == "10" ];
+ then
+	 echo "Everytime i hear speak i get the urge to play in front of cars"
+fi
+
+if [ "$ran" == "11" ];
+ then
+	 echo "At the end of the day you'll always be idiot"
+fi
