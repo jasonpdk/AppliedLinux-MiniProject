@@ -19,6 +19,8 @@ FILENAME=file
 EXTENSION=txt
 TREE=false
 
+echo $0 $@
+
 while getopts "n:p:s:f:e:th" opt; do
     case "${opt}" in
         n)
