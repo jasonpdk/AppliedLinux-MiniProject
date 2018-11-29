@@ -4,7 +4,7 @@
 # Discription: vigenere cipher. google it for a discription
 # Date: 2018-11-21
 
-alph=("" a b c d e f g h i j k l m n o p q r s t u v w x y z )
+alph=(a b c d e f g h i j k l m n o p q r s t u v w x y z )
 
 strNum=0
 keyNum=0
@@ -110,7 +110,7 @@ while getopts e:d: option ; do
       echo -ne "output: "
       for each in ${cypherNum[@]}; do
         if [ "$each" -gt 26 ]; then
-          each=$((each-26))
+          each=$((each %26))
         fi
 
         echo -ne "${alph[$each]}"
@@ -133,7 +133,7 @@ while getopts e:d: option ; do
       echo -ne "output: "
       for each in ${decypherNum[@]}; do
         if [ "$each" -lt 1 ]; then
-          each=$((each+26))
+          each=$((each %26))
         fi
 
         echo -ne "${alph[$each]}"
